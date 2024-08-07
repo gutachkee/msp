@@ -70,6 +70,21 @@ target_link_libraries(mspclient ${CMAKE_THREAD_LIBS_INIT} ASIO::ASIO)
 add_library(msp_fcu ${MSP_SOURCE_DIR}/FlightController.cpp)
 target_link_libraries(msp_fcu mspclient)
 
+# static variant
+add_library(msp_fcu_static STATIC
+    ${MSP_SOURCE_DIR}/Client.cpp
+    ${MSP_SOURCE_DIR}/PeriodicTimer.cpp
+    ${MSP_SOURCE_DIR}/FlightController.cpp
+)
+
+target_include_directories(msp_fcu_static
+    PUBLIC
+        inc/
+)
+
+target_link_libraries(msp_fcu_static
+    ASIO::ASIO
+)
 
 ################################################################################
 ### examples / tests
